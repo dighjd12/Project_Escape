@@ -13,9 +13,4 @@ Audio and 3D Assets in 'Imported' folder:
 
   imported from Unity Asset Store
   
-  
-You can play the web version in most browsers, except Google Chrome!
-
-click on the PlayOnWeb/PlayOnWeb.html to play! 
-
-
+ 
