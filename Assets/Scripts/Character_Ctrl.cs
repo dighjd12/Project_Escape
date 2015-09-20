@@ -99,6 +99,7 @@ public class Character_Ctrl : MonoBehaviour {
 	}
 	
 	void Move (){
+
 		float xx = Input.GetAxisRaw ("Vertical");
 		float zz = Input.GetAxisRaw ("Horizontal");
 
@@ -118,6 +119,7 @@ public class Character_Ctrl : MonoBehaviour {
 
 			moveDirection.y -= gravity * Time.deltaTime;
 			controller.Move(moveDirection * Time.deltaTime);
+
 			PS=PlayerState.Walk;
 
 			if(xx==0&&zz==0 && PS!=PlayerState.Wait){
@@ -181,11 +183,13 @@ public class Character_Ctrl : MonoBehaviour {
 
 			if(!mouseMoving){
 				Move ();
+
 			}
 
 			sc.AnimationUpdate();
 
 		}
+
 	}
 
 }

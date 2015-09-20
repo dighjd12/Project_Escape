@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour {
 
 	public float fadeTime = 6f;
 
+	public AudioSource attackAud;
+
 	void Start(){
 		anim = this.GetComponent<Animation>();
 		curr_HP = max_HP;
@@ -140,6 +142,7 @@ public class Enemy : MonoBehaviour {
 		}
 		else if(ES==EnemyState.Attack){
 			anim.CrossFade("Attack", 0.2f);
+			attackAud.Play();
 		}
 	}
 

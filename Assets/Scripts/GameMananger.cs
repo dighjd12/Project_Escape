@@ -30,9 +30,11 @@ public class GameMananger : MonoBehaviour {
 	public Transform hintPlane;
 	public GameObject hint1;
 	bool HintUp;
+	public AudioSource hintAud;
 
 	public Button OtherChar1;
 	public Image OtherChar1Img;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -105,6 +107,11 @@ public class GameMananger : MonoBehaviour {
 		if(!gameEnd){
 			time += Time.deltaTime;
 			timeText.text = "Time : " + Mathf.Floor(time).ToString();
+		}
+
+		if(cc.PS==PlayerState.Dead){
+			gameEnd=true;
+			replayButton.SetActive(true);
 		}
 
 		if(Input.GetKeyDown(KeyCode.S)){
@@ -190,6 +197,7 @@ public class GameMananger : MonoBehaviour {
 			if(objectsOnHintPlane[n].gameObject.tag=="Player"){
 				hint1.SetActive(true);
 				HintUp=true;
+				hintAud.Play();
 			}
 		}
 	}

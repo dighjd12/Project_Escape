@@ -6,6 +6,9 @@ public class Knight_Ctrl : MonoBehaviour, Spec_Ctrl {
 	public Character_Ctrl cc;
 	public Animation anim;
 
+	public AudioSource stepAud;
+	public AudioSource skillAud;
+
 	public GameObject Bullet;
 	public Transform ShotPoint;
 
@@ -27,12 +30,17 @@ public class Knight_Ctrl : MonoBehaviour, Spec_Ctrl {
 
 		if(cc.PS==PlayerState.Wait){
 			anim.CrossFade("Wait", 0.2f);
+			stepAud.Stop();
 		}
 		else if(cc.PS==PlayerState.Walk){
 			anim.CrossFade("Walk", 0.2f);
+			if(!stepAud.isPlaying){
+				stepAud.Play();
+			}
 		}
 		else if(cc.PS==PlayerState.Attack){
 			anim.CrossFade("Attack", 0.2f);
+			skillAud.Play ();
 		}
 	}
 
@@ -52,8 +60,6 @@ public class Knight_Ctrl : MonoBehaviour, Spec_Ctrl {
 	
 		GameObject bullet = Instantiate(Bullet, ShotPoint.position, Quaternion.LookRotation(ShotPoint.up)) as GameObject;
 
-		//	aud.clip = ShotSound;
-		//	aud.Play();
 		Physics.IgnoreCollision(bullet.GetComponent<Collider>(), this.GetComponentInParent<Collider>());
 		
 		cc.PS = PlayerState.Attack;
@@ -67,9 +73,7 @@ public class Knight_Ctrl : MonoBehaviour, Spec_Ctrl {
 		print ("bullet made");
 
 		Instantiate(Bullet, ShotPoint.position, Quaternion.LookRotation(ShotPoint.up));
-		
-		//	aud.clip = ShotSound;
-		//	aud.Play();
+
 		
 		cc.PS = PlayerState.Attack;
 		

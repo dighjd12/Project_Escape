@@ -5,13 +5,20 @@ public class TreasureBox : MonoBehaviour {
 
 	public GameMananger gm;
 	public float fadeTime;
+	public AudioSource aud;
+
+	bool canDiscover = true;
 
 	public void Discover(){
 
-		StartCoroutine("FadeOut");
-		gm.WhitenImage(gm.Treasure1);
-		gm.foundTreasure=true;
-		//play sound?
+		if(canDiscover){
+			aud.Play();
+			StartCoroutine("FadeOut");
+			gm.WhitenImage(gm.Treasure1);
+			gm.foundTreasure=true;
+			canDiscover=false;
+			//play sound?
+		}
 	}
 	
 	IEnumerator FadeOut(){

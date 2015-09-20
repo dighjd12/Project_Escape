@@ -4,12 +4,13 @@ using System.Collections;
 public class Door : MonoBehaviour {
 
 	public Animation anim;
-	
+	public AudioSource aud;
 	public string openAnimName;
 	public string closeAnimName;
 
 	void Start(){
 		anim = GetComponent<Animation>();
+		aud = GetComponent<AudioSource>();
 	}
 	
 
@@ -23,6 +24,7 @@ public class Door : MonoBehaviour {
 
 	IEnumerator OpenTheDoor(){
 		anim.Play(openAnimName);
+		aud.Play();
 
 		yield return new WaitForSeconds(3f);
 		anim.Play(closeAnimName);

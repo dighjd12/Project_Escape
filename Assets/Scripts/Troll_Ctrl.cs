@@ -11,6 +11,9 @@ public class Troll_Ctrl : MonoBehaviour, Spec_Ctrl {
 	GameObject carriedObject;
 	GameObject lastCarriedObject;
 
+	public AudioSource stepAud;
+	public AudioSource skillAud;
+
 	public float skillRange = 80f;
 	public GameMananger gm;
 
@@ -31,11 +34,16 @@ public class Troll_Ctrl : MonoBehaviour, Spec_Ctrl {
 	public void AnimationUpdate(){
 		if(cc.PS==PlayerState.Wait){
 			anim.CrossFade("Idle_01", 0.2f);
+			stepAud.Stop();
 		}
 		else if(cc.PS==PlayerState.Walk){
 			anim.CrossFade(moveAnimation, 0.2f);
+			if(!stepAud.isPlaying){
+				stepAud.Play();
+			}
 		}else if(cc.PS==PlayerState.Attack){
 			anim.CrossFade("Attack_02", 0.2f);
+			skillAud.Play ();
 		}
 	}
 	
